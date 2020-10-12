@@ -54,6 +54,17 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
       result.notImplemented();
     }
   }
+  
+  
+  public static void registerWith(PluginRegistry.Registrar registrar) {
+    InAppReviewPlugin plugin = new InAppReviewPlugin();
+
+    plugin.channel = new MethodChannel(registrar.messenger(), "dev.britannio.in_app_review");
+    plugin.channel.setMethodCallHandler(plugin);
+    plugin.context = registrar.context();
+    plugin.activity = registrar.activity();
+  }
+
 
   private void isAvailable(final Result result) {
     Log.i(TAG, "isAvailable: called");
